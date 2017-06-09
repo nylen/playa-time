@@ -68,7 +68,7 @@ module section(hour) {
         [ x1_top   , y1 + y_fudge, face_top ],     // 6
         [ x0_top   , y1, face_top ]      // 7
     ];
-      
+    
     faces = [
         [0,1,2,3],  // bottom
         [4,5,1,0],  // front
