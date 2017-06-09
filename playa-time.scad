@@ -13,6 +13,7 @@ wire_radius = inches(0.2);
 pole_face_bottom     = feet(6);
 pole_face_bottom_low = pole_face_bottom - inches(8);
 pole_face_top        = feet(8);
+pole_face_top_high   = pole_face_top + inches(8);
 
 face_width = feet(3);
 
@@ -50,23 +51,25 @@ module section(hour) {
     face_bottom     = pole_face_bottom     * cos(pole_rotation);
     face_bottom_low = pole_face_bottom_low * cos(pole_rotation);
     face_top        = pole_face_top        * cos(pole_rotation);
+    face_top_high   = pole_face_top_high   * cos(pole_rotation);
     
-    x0_bottom = pole_face_bottom * sin(pole_rotation);
-    x0_top    = pole_face_top    * sin(pole_rotation);
+    x0_bottom   = pole_face_bottom   * sin(pole_rotation);
+    x0_top      = pole_face_top      * sin(pole_rotation);
+    x0_top_high = pole_face_top_high * sin(pole_rotation);
     
     x1_bottom     = pole_face_bottom     * sin(pole_rotation) + face_width;
     x1_bottom_low = pole_face_bottom_low * sin(pole_rotation) + face_width;
     x1_top        = pole_face_top        * sin(pole_rotation) + face_width;
 
     coords = [
-        [ x0_bottom, y0, face_bottom ],  // 0
+        [ x0_bottom    , y0          , face_bottom     ],  // 0
         [ x1_bottom_low, y0 + y_fudge, face_bottom_low ],  // 1
         [ x1_bottom_low, y1 + y_fudge, face_bottom_low ],  // 2
-        [ x0_bottom, y1, face_bottom ],  // 3
-        [ x0_top   , y0, face_top ],     // 4
-        [ x1_top   , y0 + y_fudge, face_top ],     // 5
-        [ x1_top   , y1 + y_fudge, face_top ],     // 6
-        [ x0_top   , y1, face_top ]      // 7
+        [ x0_bottom    , y1          , face_bottom     ],  // 3
+        [ x0_top_high  , y0          , face_top_high   ],  // 4
+        [ x1_top       , y0 + y_fudge, face_top        ],  // 5
+        [ x1_top       , y1 + y_fudge, face_top        ],  // 6
+        [ x0_top_high  , y1          , face_top_high   ]   // 7
     ];
     
     faces = [
