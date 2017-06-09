@@ -5,9 +5,9 @@ pole_rotation = -15;
 pole_height = feet(10);
 pole_radius = inches(1);
 
-wire_angle_steepness = 42;
-wire_angle_rotation  = -pole_rotation * 1.82;
-wire_length = pole_height * 1.38;
+wire_angle_steepness = 48.5;
+wire_angle_rotation  = -pole_rotation * 1;
+wire_length = pole_height * 1.49;
 wire_radius = inches(0.2);
 
 pole_face_bottom     = feet(6);
