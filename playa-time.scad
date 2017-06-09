@@ -85,7 +85,8 @@ module section(hour) {
             translate([0, 0, z_midpoint]) {
                 rotate([rotate_fudge_2, 0, 0]) {
                     translate([0, 0, -z_midpoint]) {
-                        polyhedron(coords, faces);
+                        // '%' is fix for transparency issues
+                        %polyhedron(coords, faces);
                     }
                 }
             }
