@@ -5,14 +5,20 @@ pole_rotation = -15;
 pole_height = feet(10);
 pole_radius = inches(1);
 
+wire_angle_steepness = 42;
+wire_angle_rotation  = -pole_rotation * 1.82;
+wire_length = pole_height * 1.38;
+wire_radius = inches(0.2);
+
 pole_face_bottom     = feet(6);
 pole_face_bottom_low = pole_face_bottom - inches(8);
 pole_face_top        = feet(8);
 
 face_width = feet(3);
 
-color_steel   = [.61, .65, .7, .7];
-color_acrylic = [.65, .7, .75, .2];
+color_steel   = [.61, .65, .70, .7];
+color_wire    = [.30, .35, .40, .8];
+color_acrylic = [.90, .89, .78, .15];
 
 // Rotate everything so that the poles don't point outwards
 rotate_fudge_1 = 5;
@@ -22,10 +28,17 @@ rotate_fudge_1 = 5;
 // in the middle of the two poles.
 rotate_fudge_2 = -5;
 
-module section() {
+module section(hour) {
     rotate([rotate_fudge_1, pole_rotation, 0]) {
         color(c = color_steel) {
             cylinder(h = pole_height, r = pole_radius, center = false);
+        }
+    }
+    
+    //if (hour == 0)
+    rotate([wire_angle_steepness, wire_angle_rotation, 0]) {
+        color(c = color_wire) {
+            cylinder(h = wire_length, r = wire_radius, center = false);
         }
     }
     
@@ -85,7 +98,7 @@ module section() {
 for (hour = [0 : 11]) {
     rotate([0, 0, 360 * hour / 12]) {
         translate([0, feet(6), 0]) {
-            section();
+            section(hour);
         }
     }
 }
